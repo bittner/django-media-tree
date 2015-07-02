@@ -4,3 +4,4 @@ django-media-tree.komodoproject
 _thumbs
 *.pyc
 *.pyo
+.DS_Store
