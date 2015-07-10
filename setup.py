@@ -1,6 +1,14 @@
 # encoding=utf8
 import os
 from setuptools import setup, find_packages
+from pip.req import parse_requirements
+
+# parse_requirements() returns generator of pip.req.InstallRequirement objects
+install_reqs = parse_requirements('requirements.txt', session=None)
+
+# reqs is a list of requirement
+# e.g. ['django==1.5.1', 'mezzanine==1.4.6']
+reqs = [str(ir.req) for ir in install_reqs]
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
@@ -9,7 +17,8 @@ README = read('README.rst')
 
 setup(
     name = "django-media-tree",
-    version = "0.8.1",
+    version = "0.9.0",
+    install_requires=reqs,
     url = 'http://github.com/samluescher/django-media-tree',
     license = 'BSD',
     description = "Django Media Tree is a Django app for managing your website's media files in a folder tree, and using them in your own applications.",
