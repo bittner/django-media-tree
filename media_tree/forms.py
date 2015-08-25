@@ -108,7 +108,7 @@ class UploadForm(FileForm):
     def __init__(self, *args, **kwargs):
         super(UploadForm, self).__init__(*args, **kwargs)
         for key in self.fields.keys():
-            if not key in ('file', 'parent'):
+            if key not in ('file', 'parent'):
                 del self.fields[key]
 
 

@@ -16,9 +16,9 @@ class FocalPointModelExtender(extension.ModelExtender):
     def get_crop(self):
         x = ''
         y = ''
-        if self.focal_x != None:
+        if self.focal_x is not None:
             x = str(int(round(self.focal_x * 100)))
-        if self.focal_y != None:
+        if self.focal_y is not None:
             y = str(int(round(self.focal_y * 100)))
         return "%s,%s" % (x, y)
 
@@ -46,5 +46,3 @@ class FocalPointFormExtender(extension.FormExtender):
 
 extension.register(FocalPointModelExtender)
 extension.register(FocalPointFormExtender)
-
-

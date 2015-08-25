@@ -38,7 +38,7 @@ class PluginLink(object):
                 raise
         if self.type == PluginLink.LINK_PAGE:
             href = self.obj.get_absolute_url()
-        if href != None:
+        if href is not None:
             href += self.querystring
         return href
 

@@ -155,13 +155,13 @@ class ChangeMetadataForSelectedForm(FileNodeActionsWithUserForm):
         copy_fields = copy_form.fields
         exclude = MetadataForm.Meta.exclude
         for key in copy_fields.keys():
-            if not key in self.fields and not key in exclude:
+            if key not in self.fields and key not in exclude:
                 self.confirm_fields.append(key)
                 self.fields[key] = copy_fields[key]
                 model_field = copy_form.instance._meta.get_field(key)
                 if model_field.validators:
                     for validator in model_field.validators:
-                        if not validator in self.fields[key].validators:
+                        if validator not in self.fields[key].validators:
                             self.fields[key].validators.append(validator)
 
     def update_node(self, node, metadata):

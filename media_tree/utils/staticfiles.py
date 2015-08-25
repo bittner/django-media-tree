@@ -61,7 +61,7 @@ class StaticIconFile(StaticFile):
     def __init__(self, *args, **kwargs):
         super(StaticIconFile, self).__init__(*args, **kwargs)
         self.is_icon = True
-        if not self.path in BUFFERED_ICON_SIZES:
+        if self.path not in BUFFERED_ICON_SIZES:
             try:
                 im = Image.open(self.path)
                 BUFFERED_ICON_SIZES[self.path] = im.size
@@ -95,7 +95,7 @@ class StaticPathFinder:
         for dir_name in dirs:
             for name in names:
                 path = os.path.join(dir_name, name + file_ext)
-                if not path in EXISTING_PATHS:
+                if path not in EXISTING_PATHS:
                     # check on file system, then cache
                     EXISTING_PATHS[path] = STATIC_STORAGE.exists(path)
                 if EXISTING_PATHS[path]:

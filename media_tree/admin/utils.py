@@ -29,4 +29,4 @@ def get_request_attr(request, attr, default=None):
     return request.media_tree.get(attr, default)
 
 def is_search_request(request):
-    return request.GET.get(SEARCH_VAR, None) != None
+    return request.GET.get(SEARCH_VAR, None) is not None

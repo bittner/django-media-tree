@@ -40,14 +40,14 @@ def __get_filenode_list(nodes, filter_media_types=None, exclude_media_types=None
             # (`list_method == 'append'`), it must include folders in order to make sense,
             # but folders will only be added if they have any descendants matching the filter criteria
             if ((not filter_media_types or node.media_type in filter_media_types) \
-                and (not exclude_media_types or not node.media_type in exclude_media_types)) \
+                and (not exclude_media_types or node.media_type not in exclude_media_types)) \
                 or (child_count > 0 and list_method == 'append' and (max_depth is None or _depth < max_depth)):
                     _node_count += 1
                     if processors:
                         node_copy = copy(node)
                         for processor in processors:
                             node_copy = processor(node_copy)
-                        if node_copy != None:
+                        if node_copy is not None:
                             result_list.append(node_copy)
                     else:
                         result_list.append(node)

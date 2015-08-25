@@ -103,12 +103,12 @@ class FileNodeListingView(ListView):
             processors=processors, max_depth=max_depth, ordering=['position', 'name'])
 
     def get_context_data(self, **kwargs):
-        if not 'object_list' in kwargs:
+        if 'object_list' not in kwargs:
             kwargs['object_list'] = self.get_queryset()
         context = super(FileNodeListingView, self).get_context_data(**kwargs)
         context[self.context_object_name] = self.get_render_object_list(context.pop(self.context_object_name))
         
-        if not 'title' in context:
+        if 'title' not in context:
             context['title'] = _('Media objects')
 
         return context
@@ -150,7 +150,7 @@ class FileNodeListingFilteredByFolderView(FileNodeListingView):
             folder_lookup = {'pk': pk} 
         elif path is not None and len(path):
             folder_lookup = {'path': path} 
-        if not folder_lookup is None:
+        if folder_lookup is not None:
             try:
                 self.parent_folder = FileNode.folders.get(**folder_lookup)
             except FileNode.DoesNotExist:
@@ -158,7 +158,7 @@ class FileNodeListingFilteredByFolderView(FileNodeListingView):
 
     def validate_parent_folder(self):
         top_node_pks = [node.pk for node in self.queryset]
-        if not self.parent_folder.pk in top_node_pks:
+        if self.parent_folder.pk not in top_node_pks:
             selected_node = self.parent_folder.get_ancestors().get(pk__in=top_node_pks)                        
             if not self.include_descendants or  \
                 (self.list_max_depth > 0 and  \

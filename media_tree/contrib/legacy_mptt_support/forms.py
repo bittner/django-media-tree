@@ -20,7 +20,7 @@ class TreeNodeChoiceField(forms.ModelChoiceField):
     """A ModelChoiceField for tree nodes."""
     def __init__(self, queryset, *args, **kwargs):
         self.level_indicator = kwargs.pop('level_indicator', u'---')
-        if kwargs.get('required', True) and not 'empty_label' in kwargs:
+        if kwargs.get('required', True) and 'empty_label' not in kwargs:
             kwargs['empty_label'] = None
 
         # if a queryset is supplied, enforce ordering
@@ -44,7 +44,7 @@ class TreeNodeMultipleChoiceField(TreeNodeChoiceField, forms.ModelMultipleChoice
     
     def __init__(self, *args, **kwargs):
         self.level_indicator = kwargs.pop('level_indicator', u'---')
-        if kwargs.get('required', True) and not 'empty_label' in kwargs:
+        if kwargs.get('required', True) and 'empty_label' not in kwargs:
             kwargs['empty_label'] = None
         
         # For some reason ModelMultipleChoiceField constructor passes kwargs

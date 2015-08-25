@@ -44,7 +44,7 @@ def get_broken_media():
     for file_path in files_in_storage:
         # need to normalize unicode path due to https://code.djangoproject.com/ticket/16315
         file_path = normalize('NFC', file_path)
-        if not file_path in files_in_db:
+        if file_path not in files_in_db:
             storage_name = os.path.join(media_subdir, os.path.basename(file_path))
             orphaned_files.append(storage_name)
 

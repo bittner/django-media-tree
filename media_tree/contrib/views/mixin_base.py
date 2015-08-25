@@ -33,7 +33,7 @@ class PluginMixin(object):
         else:
             opts = {}
 
-        if not view_class in VALID_MIXIN_OPTIONS:
+        if view_class not in VALID_MIXIN_OPTIONS:
             valid_options = view_class.__dict__.keys()
             for cls in view_class.__bases__:
                 if cls != object:

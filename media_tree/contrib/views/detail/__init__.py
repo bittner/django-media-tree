@@ -84,7 +84,7 @@ class FileNodeDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(FileNodeDetailView, self).get_context_data(**kwargs)
-        if not 'title' in context:
+        if 'title' not in context:
             context['title'] = context[self.context_object_name].title or context[self.context_object_name].name 
         return context
 

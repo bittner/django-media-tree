@@ -21,7 +21,7 @@ class EasyThumbnailsBackend(MediaBackend):
 
     @staticmethod
     def check_conf():
-        if not 'easy_thumbnails' in settings.INSTALLED_APPS:
+        if 'easy_thumbnails' not in settings.INSTALLED_APPS:
             from django.core.exceptions import ImproperlyConfigured
             raise ImproperlyConfigured('`easy_thumbnails` is not in your INSTALLED_APPS.')
 

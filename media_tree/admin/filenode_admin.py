@@ -379,7 +379,7 @@ class FileNodeAdmin(MPTTModelAdmin):
             # opened if its parent folders aren't
             for folder in FileNode.objects.filter(pk__in=expanded_folders_pk):
                 for ancestor in folder.get_ancestors():
-                    if not ancestor.pk in expanded_folders_pk and folder.pk in expanded_folders_pk:
+                    if ancestor.pk not in expanded_folders_pk and folder.pk in expanded_folders_pk:
                         expanded_folders_pk.remove(folder.pk)
             setattr(request, 'expanded_folders_pk', expanded_folders_pk)
 
@@ -399,8 +399,8 @@ class FileNodeAdmin(MPTTModelAdmin):
             request.GET = request.GET.copy()
             thumb_size_key = request.GET.get('thumbnail_size')
             del request.GET['thumbnail_size']
-            if not thumb_size_key in app_settings.MEDIA_TREE_ADMIN_THUMBNAIL_SIZES:
-                 thumb_size_key = None
+            if thumb_size_key not in app_settings.MEDIA_TREE_ADMIN_THUMBNAIL_SIZES:
+                thumb_size_key = None
             request.session['thumbnail_size'] = thumb_size_key
         thumb_size_key = request.session.get('thumbnail_size', 'default')
         set_request_attr(request, 'thumbnail_size', thumb_size_key)
@@ -439,7 +439,7 @@ class FileNodeAdmin(MPTTModelAdmin):
         response = super(FileNodeAdmin, self).changelist_view(request, extra_context)
         if isinstance(response, HttpResponse) and parent_folder and not parent_folder.is_top_node():
             expanded_folders_pk = self.get_expanded_folders_pk(request)
-            if not parent_folder.pk in expanded_folders_pk:
+            if parent_folder.pk not in expanded_folders_pk:
                 expanded_folders_pk.append(parent_folder.pk)
                 self.set_expanded_folders_pk(response, expanded_folders_pk)
         return response

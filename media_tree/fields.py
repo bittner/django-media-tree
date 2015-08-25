@@ -49,21 +49,21 @@ class FileNodeChoiceField(TreeNodeChoiceField):
     def clean(self, value):
         result = super(FileNodeChoiceField, self).clean(value)
         errors = []
-        if result != None:
-            if self.allowed_node_types and not result.node_type in self.allowed_node_types:
+        if result is not None:
+            if self.allowed_node_types and result.node_type not in self.allowed_node_types:
                 if len(self.allowed_node_types) == 1 and FileNode.FILE in self.allowed_node_types:
                     errors.append(_('Please select a file.'))
                 elif len(self.allowed_node_types) == 1 and FileNode.FOLDER in self.allowed_node_types:
                     errors.append(_('Please select a folder.'))
                 else:
                     errors.append(_('You cannot select this node type.'))
-            if self.allowed_media_types and not result.media_type in self.allowed_media_types:
+            if self.allowed_media_types and result.media_type not in self.allowed_media_types:
                 if len(self.allowed_media_types) == 1:
                     label = app_settings.MEDIA_TREE_CONTENT_TYPES[self.allowed_media_types[0]]
                     errors.append(_('The required media type is %s.') % label)
                 else:
                     errors.append(_('You cannot select this media type.'))
-            if self.allowed_extensions and not result.extension in self.allowed_extensions:
+            if self.allowed_extensions and result.extension not in self.allowed_extensions:
                 if len(self.allowed_extensions) == 1:
                     errors.append(_('The required file type is %s.') % self.allowed_extensions[0])
                 else:
@@ -145,7 +145,7 @@ class DimensionField(models.CharField):
     contain units such as "px" or "%" in the future.
     """
     def __init__(self, verbose_name=None, name=None, **kwargs):
-        if not 'max_length' in kwargs:
+        if 'max_length' not in kwargs:
             kwargs['max_length'] = 8
         super(DimensionField, self).__init__(verbose_name, name, **kwargs)
 
