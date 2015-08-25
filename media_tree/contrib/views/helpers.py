@@ -1,5 +1,6 @@
 from media_tree.utils.filenode import get_file_link
 
+
 class FolderLinkBase(object):
 
     filter_media_types = None

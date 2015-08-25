@@ -19,6 +19,7 @@ define.
 
 VALID_MIXIN_OPTIONS = {}
 
+
 class PluginMixin(object):
 
     def get_view(self, request, view_class, opts=None):

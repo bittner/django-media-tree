@@ -4,12 +4,12 @@ from media_tree.media_backends import MediaBackend, ThumbnailError
 from media_tree import media_types
 from sorl.thumbnail import get_thumbnail
 
+
 class SorlThumbnailBackend(MediaBackend):
     """
     Media backend for sorl.thumbnails support. 
     Experimental and currently not officially supported.
     """
-    
     SUPPORTED_MEDIA_TYPES = (media_types.SUPPORTED_IMAGE,)
     
     @staticmethod
@@ -23,4 +23,3 @@ class SorlThumbnailBackend(MediaBackend):
         except Exception as inst:
             raise ThumbnailError(inst)
         return thumbnail
-

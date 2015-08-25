@@ -16,6 +16,7 @@ __all__ = ('TreeNodeChoiceField', 'TreeNodeMultipleChoiceField', 'TreeNodePositi
 
 # Fields ######################################################################
 
+
 class TreeNodeChoiceField(forms.ModelChoiceField):
     """A ModelChoiceField for tree nodes."""
     def __init__(self, queryset, *args, **kwargs):
@@ -38,6 +39,7 @@ class TreeNodeChoiceField(forms.ModelChoiceField):
         level = getattr(obj, obj._mptt_meta.level_attr)
         level_indicator = mark_safe(conditional_escape(self.level_indicator) * level)
         return mark_safe(u'%s %s' % (level_indicator, conditional_escape(smart_unicode(obj))))
+
 
 class TreeNodeMultipleChoiceField(TreeNodeChoiceField, forms.ModelMultipleChoiceField):
     """A ModelMultipleChoiceField for tree nodes."""
@@ -71,6 +73,7 @@ class TreeNodePositionField(forms.ChoiceField):
         if 'choices' not in kwargs:
             kwargs['choices'] = self.DEFAULT_CHOICES
         super(TreeNodePositionField, self).__init__(*args, **kwargs)
+
 
 # Forms #######################################################################
 

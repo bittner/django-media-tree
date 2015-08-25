@@ -127,6 +127,7 @@ class MimetypeStaticIconFileFinder:
 # TODO: Find a better way of caching ICON_FINDERS (and what about threads and different settings files defining different icon finders?) 
 ICON_FINDERS = None
 
+
 def get_icon_finders(finder_names):
     global ICON_FINDERS
     if not ICON_FINDERS:

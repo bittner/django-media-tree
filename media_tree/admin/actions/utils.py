@@ -2,6 +2,7 @@ from django.contrib.admin import helpers
 from media_tree.models import FileNode
 from django.utils.translation import ugettext as _
 
+
 def get_actions_context(modeladmin):
     return {
         'node': FileNode.get_top_node(), # TODO get current folder
@@ -10,6 +11,7 @@ def get_actions_context(modeladmin):
         "app_label": modeladmin.model._meta.app_label,
         'action_checkbox_name': helpers.ACTION_CHECKBOX_NAME,
     }
+
 
 def execute_empty_queryset_action(modeladmin, request):
     action = request.POST.get('action', None)

@@ -8,6 +8,7 @@ from copy import copy
 # TODO: There may be some benefits in this function returning a lazily evaluated object, like QuerySets:
 #    https://docs.djangoproject.com/en/dev/ref/models/querysets/#when-querysets-are-evaluated
 
+
 def __get_filenode_list(nodes, filter_media_types=None, exclude_media_types=None, filter=None, ordering=None, processors=None, list_method='append', max_depth=None, max_nodes=None, _depth=1, _node_count=0):
 
     if isinstance(nodes, models.query.QuerySet):
@@ -59,6 +60,7 @@ def __get_filenode_list(nodes, filter_media_types=None, exclude_media_types=None
                 method(child_nodes)
 
     return result_list
+
 
 def get_nested_filenode_list(nodes, filter_media_types=None, exclude_media_types=None, filter=None, ordering=None, processors=None, max_depth=None, max_nodes=None):
     """
@@ -112,6 +114,7 @@ def get_nested_filenode_list(nodes, filter_media_types=None, exclude_media_types
     return __get_filenode_list(nodes, filter_media_types=filter_media_types, exclude_media_types=exclude_media_types,
         filter=filter, ordering=ordering, processors=processors, list_method='append', max_depth=max_depth, max_nodes=max_nodes)
 
+
 def get_merged_filenode_list(nodes, filter_media_types=None, exclude_media_types=None, filter=None, ordering=None, processors=None, max_depth=None, max_nodes=None):
     """
     Almost the same as :func:`get_nested_filenode_list`, but returns a flat (one-dimensional) list.
@@ -129,6 +132,7 @@ def get_merged_filenode_list(nodes, filter_media_types=None, exclude_media_types
     """
     return __get_filenode_list(nodes, filter_media_types=filter_media_types, exclude_media_types=exclude_media_types,
         filter=filter, ordering=ordering, processors=processors, list_method='extend', max_depth=max_depth, max_nodes=max_nodes)
+
 
 # TODO: This would be better as a template filter, but its params are to complicated
 def get_file_link(node, use_metadata=False, include_size=False, include_extension=False, include_icon=False, href=None, extra_class='', extra=''):

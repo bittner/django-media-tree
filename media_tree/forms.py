@@ -6,6 +6,7 @@ from django.template.defaultfilters import filesizeformat
 
 import os
 
+
 class FileNodeForm(forms.ModelForm):
 
     class Meta:

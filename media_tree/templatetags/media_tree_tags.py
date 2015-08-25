@@ -4,6 +4,7 @@ from django import template
 
 register = template.Library()
 
+
 def get_kwargs_for_file_link(opts):
     kwargs = {
         'use_metadata': False, 
@@ -17,6 +18,7 @@ def get_kwargs_for_file_link(opts):
     elif isinstance(opts, dict):
         kwargs.update(opts)
     return kwargs
+
 
 def file_links(items, opts=None):
     """
@@ -33,6 +35,7 @@ def file_links(items, opts=None):
     return result
 
 register.filter(file_links)
+
 
 def file_link(node, opts=None):
     """

@@ -17,6 +17,7 @@ from media_tree.contrib.legacy_mptt_support.forms import MPTTAdminForm, TreeNode
 
 __all__ = ('MPTTChangeList', 'MPTTModelAdmin', 'MPTTAdminForm')
 
+
 class MPTTChangeList(ChangeList):
     def get_query_set(self, request=None):
         # request arg was added in django r16144 (after 1.3)
@@ -29,6 +30,7 @@ class MPTTChangeList(ChangeList):
         tree_id = qs.model._mptt_meta.tree_id_attr
         left = qs.model._mptt_meta.left_attr
         return qs.order_by(tree_id, left)
+
 
 class MPTTModelAdmin(ModelAdmin):
     """

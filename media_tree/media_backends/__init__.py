@@ -7,7 +7,8 @@ import os
 
 class ThumbnailError(Exception):
     pass
-    
+
+
 def get_media_backend(fail_silently=True, handles_media_types=None, 
     handles_file_extensions=None, supports_thumbnails=None):
         """

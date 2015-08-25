@@ -18,6 +18,7 @@ register = Library()
 
 MPTT_ADMIN_LEVEL_INDENT = getattr(settings, 'MPTT_ADMIN_LEVEL_INDENT', 10)
 
+
 ###
 # Ripped from contrib.admin's items_for_result tag.
 # The only difference is we're indenting nodes according to their level.
